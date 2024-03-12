@@ -1,0 +1,6 @@
+#dependencias
+node_modules
+
+#envs
+*env
+!.env.example
