@@ -4,7 +4,9 @@ import VideoController from '../controllers/VideoController'
 const videoController = new VideoController()
 const router = Router()
 
-router.post('/upload', videoController.uploadVideo)
+router.post('/', videoController.uploadVideo)
+router.get('/assistir/:filename', videoController.assistirVideo)
+
 
 
 export default router
