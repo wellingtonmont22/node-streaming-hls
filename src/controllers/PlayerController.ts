@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { createReadStream, existsSync, readFileSync, statSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { resolve } from "path";
-import { pipeline } from "stream/promises";
+
 
 export default class PlayerController {
     exibirPlayer (req: Request, res: Response) {
@@ -16,9 +16,7 @@ export default class PlayerController {
         if (!existsSync(pathFile)) return res.status(400).json({ message: 'Arquivo não existe.' })
 
         let html = readFileSync(resolve(__dirname, '..', '..', 'public', 'player.html'), { encoding: 'utf-8' })
-        // console.log(html, filename)
         html = html.replace('__linkDoVideo__', linkStream)
-        console.log(html)
         res.setHeader("Content-Type", "text/html")
         return res.send(html)
     }
